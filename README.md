@@ -1,7 +1,7 @@
 # ReactNativeApps
 
-### [Goals List App](/GoalsListApp)
+### [Goals List App](/tree/main/GoalsListApp)
 
-![users-table-app screen](/AppsScreenshots/GoalsListApp.png)
+![users-table-app screen](/tree/main/AppsScreenshots/GoalsListApp.png)
 
 ----------------------------------------------------------------------------------
