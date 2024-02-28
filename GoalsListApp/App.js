@@ -1,7 +1,9 @@
-import {Button, StyleSheet, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {useState} from "react";
 import GoalInput from "./components/goalInput/GoalInput";
 import GoalsList from "./components/goalsList/GoalsList";
+import StandardButton from "./components/buttons/standardButton";
+import {Colors} from "./Colors";
 
 export default function App() {
     const [goals, setGoals] = useState([]);
@@ -29,11 +31,14 @@ export default function App() {
     }
 
     return (
-        <View style={styles.container}>
-            <Button title={'Press to ADD your GOAL ;)'} onPress={StartAddGoalHandler} color={'#fdca40'}/>
-            <GoalInput onAdd={AddGoalHandler} onCancel={EndAddGoalHandler} isVisible={modalIsVisible}/>
-            <GoalsList goals={goals} OnDeleteGoalItem={DeleteGoalItemHandler}/>
-        </View>
+        <>
+            <StatusBar barStyle={"light-content"} backgroundColor={Colors.darkBlue}/>
+            <View style={styles.container}>
+                <StandardButton title={'Press to ADD GOAL'} onPress={StartAddGoalHandler} color={Colors.darkBlue}/>
+                <GoalInput onAdd={AddGoalHandler} onCancel={EndAddGoalHandler} isVisible={modalIsVisible}/>
+                <GoalsList goals={goals} OnDeleteGoalItem={DeleteGoalItemHandler}/>
+            </View>
+        </>
     );
 }
 
@@ -41,7 +46,7 @@ const styles = StyleSheet.create({
     container: {
         paddingVertical: 50,
         paddingHorizontal: 16,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
         flex: 1,
         flexDirection: "column-reverse"
     },

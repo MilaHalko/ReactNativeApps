@@ -4,6 +4,7 @@
     "slug": "GoalsListApp",
     "version": "1.0.0",
     "orientation": "portrait",
+    "backgroundColor": "#1f2b3e",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {

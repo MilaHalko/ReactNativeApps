@@ -1,5 +1,7 @@
-import {Button, Modal, StyleSheet, TextInput, View} from "react-native";
+import {Image, Modal, StyleSheet, TextInput, View} from "react-native";
 import {useState} from "react";
+import StandardButton from "../buttons/standardButton";
+import {Colors} from "../../Colors";
 
 export default function InputBlock(props) {
     const [goalText, setGoalText] = useState('');
@@ -18,6 +20,7 @@ export default function InputBlock(props) {
     return (
         <Modal visible={props.isVisible} animationType={"slide"}>
             <View style={styles.inputContainer}>
+                <Image source={require('../../assets/images/goalIcon.png')} style={styles.image}/>
                 <TextInput
                     placeholder="Write your goal"
                     style={styles.textInputContainer}
@@ -26,10 +29,10 @@ export default function InputBlock(props) {
                 />
                 <View style={styles.buttonsContainer}>
                     <View style={styles.button}>
-                    <Button title="Add" onPress={AddGoalHandler}/>
+                        <StandardButton title={'Cancel'} onPress={props.onCancel} color={Colors.darkGrey}/>
                     </View>
                     <View style={styles.button}>
-                    <Button title={'Cancel'} onPress={props.onCancel}/>
+                        <StandardButton title={'Add'} onPress={AddGoalHandler} color={Colors.blue}/>
                     </View>
                 </View>
             </View>
@@ -40,15 +43,20 @@ export default function InputBlock(props) {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        marginHorizontal: 16,
-        marginVertical: 24,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        paddingHorizontal: 16,
+        paddingTop: 10,
+        paddingBottom: 38,
+        backgroundColor: '#252a33',
 
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
 
+    image: {
+        width: 100,
+        height: 100,
+        marginBottom: 16,
     },
 
     textInputContainer: {
@@ -56,8 +64,9 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         padding: 16,
 
-        borderColor: "#ccc",
-        borderWidth: 1,
+        backgroundColor: Colors.white,
+        borderColor: Colors.lightGrey,
+        borderWidth: 2,
         borderRadius: 8,
     },
 
