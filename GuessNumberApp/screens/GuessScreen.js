@@ -6,19 +6,27 @@ import GuessList from "../components/guess/GuessList";
 import LowerHigherBlock from "../components/input/LowerHigherBlock";
 
 let minBound = 1;
+let maxBound = 100;
+
 const GenerateNumber = (min, max) => {
     let number = Math.floor(Math.random() * (max - min)) + min;
     return number === min ? number + 1 : number;
-};
 
-let maxBound = 100;
+};
 
 const GuessScreen = ({userNumber, onGameOver}) => {
     const [guessNumbers, setGuessNumbers] = useState([Math.floor(Math.random() * 100) + 1]);
 
     useEffect(() => {
+        return () => {
+            minBound = 1;
+            maxBound = 100;
+        };
+    }, []);
+
+    useEffect(() => {
         if(guessNumbers[0] === userNumber){
-            onGameOver();
+            onGameOver(guessNumbers.length);
         }
     }, [guessNumbers, userNumber, onGameOver]);
 

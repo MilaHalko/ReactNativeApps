@@ -11,6 +11,7 @@ import AppLoading from "expo-app-loading";
 export default function App() {
     const [userNumber, setUserNumber] = useState();
     const [gameOver, setGameOver] = useState(false);
+    const [rounds, setRounds] = useState(0);
 
     const [fontsLoaded] = useFonts({
         'Manrope-Regular': require('./assets/fonts/Manrope-Regular.ttf'),
@@ -24,9 +25,16 @@ export default function App() {
     const pickedNumberHandler = (number) => {
         setUserNumber(number);
     };
-    const gameOverHandler = () => {
+    const gameOverHandler = (numberOfRounds) => {
         setGameOver(true);
+        setRounds(numberOfRounds);
     };
+
+    const newGameHandler = () => {
+        setGameOver(false);
+        setUserNumber(null);
+        setRounds(0);
+    }
 
     let screen = <EnterNumberScreen onSubmit={pickedNumberHandler}/>;
 
@@ -35,7 +43,7 @@ export default function App() {
     }
 
     if (gameOver && userNumber) {
-        screen = <GameOverScreen userNumber={userNumber}/>;
+        screen = <GameOverScreen userNumber={userNumber} rounds={rounds} onNewGame={newGameHandler}/>;
     }
 
     return (

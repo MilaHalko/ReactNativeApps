@@ -5,19 +5,19 @@ import {Colors} from "../Colors";
 import ButtonsContainer from "../components/buttons/ButtonsContainer";
 import StandardButton from "../components/buttons/StandardButton";
 
-const GameOverScreen = (props) => {
+const GameOverScreen = ({userNumber, rounds, onNewGame}) => {
     return (
         <View style={styles.container}>
             <BorderedTitle text="Game Over"/>
             <Image source={require('../assets/images/gameOverImage.png')} style={styles.image}/>
             <Text style={styles.text}>Your phone guessed the number
-                <Text style={styles.bold}> {props.number} </Text>
+                <Text style={styles.bold}> {userNumber} </Text>
                 in
-                <Text style={styles.bold}> {props.rounds} </Text>
+                <Text style={styles.bold}> {rounds} </Text>
                 rounds
             </Text>
             <ButtonsContainer style={styles.buttonContainer}>
-                <StandardButton title={'New Game'} onPress={() => {console.log('New Game')}}/>
+                <StandardButton title={'New Game'} onPress={onNewGame}/>
             </ButtonsContainer>
         </View>
     );
