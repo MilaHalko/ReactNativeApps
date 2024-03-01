@@ -1,14 +1,23 @@
 import React from 'react';
-import {StyleSheet, TextInput, View} from "react-native";
+import {StyleSheet, TextInput} from "react-native";
 import {Colors} from "../../Colors";
 import InputBlock from "./InputBlock";
 import StandardButton from "../buttons/StandardButton";
 import ButtonsContainer from "../buttons/ButtonsContainer";
 
 const NumberInput = (props) => {
+
     return (
         <InputBlock title="Enter a number">
-            <TextInput style={styles.input} keyboardType="number-pad" maxLength={2} textAlign={'center'}/>
+            <TextInput style={styles.input}
+                       keyboardType="number-pad"
+                       maxLength={2}
+                       textAlign={'center'}
+                       autoCapitalize={"none"}
+                       autoCorrect={false}
+                       value={props.number}
+                       onChangeText={props.onChange}
+            />
             <ButtonsContainer>
                 <StandardButton title={'Reset'} onPress={props.onReset}/>
                 <StandardButton title={'Submit'} onPress={props.onSubmit}/>
