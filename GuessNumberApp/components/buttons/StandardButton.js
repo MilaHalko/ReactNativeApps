@@ -13,7 +13,6 @@ const StandardButton = (props) => {
                        android_ripple={{color: Colors.green}}>
                 <Text style={styles.text}>{props.title}</Text>
             </Pressable>
-            {/*<Button title={props.title} onPress={props.onPress} color={Colors.yellow}/>*/}
         </View>
     );
 };
@@ -24,20 +23,20 @@ const styles = StyleSheet.create({
     buttonOuterContainer: {
         flex: 1,
         overflow: 'hidden',
-    },
-    buttonInnerContainer: {
-        backgroundColor: Colors.yellow,
-        borderRadius: 4,
         shadowColor: Colors.black,
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
     },
+    buttonInnerContainer: {
+        backgroundColor: Colors.yellow,
+        borderRadius: 4,
+    },
     text: {
         color: Colors.white,
+        fontFamily: 'Manrope-Bold',
         fontSize: 17,
-        fontWeight: 'bold',
         padding: 10,
         textAlign: 'center',
     },

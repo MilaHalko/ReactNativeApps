@@ -5,10 +5,21 @@ import {LinearGradient} from "expo-linear-gradient";
 import EnterNumberScreen from "./screens/EnterNumberScreen";
 import GuessScreen from "./screens/GuessScreen";
 import GameOverScreen from "./screens/GameOverScreen";
+import {useFonts} from "expo-font";
+import AppLoading from "expo-app-loading";
 
 export default function App() {
     const [userNumber, setUserNumber] = useState();
     const [gameOver, setGameOver] = useState(false);
+
+    const [fontsLoaded] = useFonts({
+        'Manrope-Regular': require('./assets/fonts/Manrope-Regular.ttf'),
+        'Manrope-Bold': require('./assets/fonts/Manrope-Bold.ttf')
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading/>;
+    }
 
     const pickedNumberHandler = (number) => {
         setUserNumber(number);

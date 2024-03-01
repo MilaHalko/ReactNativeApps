@@ -12,9 +12,9 @@ export default BorderedTitle;
 
 const styles = StyleSheet.create({
     title: {
+        fontFamily: 'Manrope-Bold',
         fontSize: 25,
         color: Colors.light,
-        fontWeight: 'bold',
         borderWidth: 3,
         borderColor: Colors.light,
         borderRadius: 5,
