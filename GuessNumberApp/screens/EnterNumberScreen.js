@@ -1,20 +1,34 @@
 import React from 'react';
-import {View, StyleSheet} from "react-native";
+import {Alert, StyleSheet, View} from "react-native";
 import NumberInput from "../components/input/NumberInput";
 import BorderedTitle from "../components/BorderedTitle";
 
-const EnterNumberScreen = () => {
+const EnterNumberScreen = (props) => {
+    const [enteredNumber, setEnteredNumber] = React.useState('');
     const inputResetHandler = () => {
-        console.log('Resetting...')
+        setEnteredNumber('');
     };
     const inputSubmitHandler = () => {
-        console.log('Submitting...')
+        const number = parseInt(enteredNumber);
+        if (isNaN(number) || number <= 0 || number > 99) {
+            Alert.alert(
+                'Invalid number!',
+                'Number has to be between 1 and 99.',
+                [{text: 'Okay', style: 'destructive', onPress: inputResetHandler}]
+            );
+            return;
+        }
+        props.onSubmit(number);
     };
 
     return (
         <View style={styles.container}>
             <BorderedTitle text="Guess My Number"/>
-            <NumberInput onReset={inputResetHandler} onSubmit={inputSubmitHandler}/>
+            <NumberInput onReset={inputResetHandler}
+                         onSubmit={inputSubmitHandler}
+                         number={enteredNumber}
+                         onChange={setEnteredNumber}
+            />
         </View>
     );
 };
