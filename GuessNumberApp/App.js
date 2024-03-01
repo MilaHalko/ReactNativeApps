@@ -1,27 +1,52 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, View} from 'react-native';
-import EnterNumberScreen from "./screens/EnterNumberScreen";
+import {ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import React, {useState} from "react";
-import {Colors} from "./Colors";
+import {LinearGradient} from "expo-linear-gradient";
+import EnterNumberScreen from "./screens/EnterNumberScreen";
 import GuessScreen from "./screens/GuessScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 
 export default function App() {
-    const [number, setNumber] = useState(0);
+    const [userNumber, setUserNumber] = useState();
+    const [gameOver, setGameOver] = useState(false);
+
+    const pickedNumberHandler = (number) => {
+        setUserNumber(number);
+    };
+    const gameOverHandler = () => {
+        setGameOver(true);
+    };
+
+    let screen = <EnterNumberScreen onSubmit={pickedNumberHandler}/>;
+
+    if (userNumber) {
+        screen = <GuessScreen userNumber={userNumber} onGameOver={gameOverHandler}/>;
+    }
+
+    if (gameOver && userNumber) {
+        screen = <GameOverScreen userNumber={userNumber}/>;
+    }
+
     return (
-        <View style={styles.container}>
-            <StatusBar style="light"/>
-            {/*<EnterNumberScreen/>*/}
-            {/*<GuessScreen/>*/}
-            {/*TODO: parameters*/}
-            <GameOverScreen number={number} rounds={0}/>
-        </View>
+        <LinearGradient colors={['#2a383a', '#3f4b4d', '#595959']} style={styles.container}>
+            <ImageBackground source={require('./assets/images/background.jpg')}
+                             resizeMode={'cover'}
+                             style={styles.container}
+                             imageStyle={styles.backgroundImage}>
+                <StatusBar style="light"/>
+                <SafeAreaView style={styles.container}>
+                    {screen}
+                </SafeAreaView>
+            </ImageBackground>
+        </LinearGradient>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.background,
     },
+    backgroundImage: {
+        opacity: 0.07,
+    }
 });
