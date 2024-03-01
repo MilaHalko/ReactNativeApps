@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, View} from "react-native";
 import {Colors} from "../../Colors";
 
-const GuessLine = (props) => {
+const GuessLine = ({round, guessNumber}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.bold}>#{props.key + 1}</Text>
-            <Text style={styles.text}>{props.guessNumber}</Text>
+            <Text style={styles.bold}>#{round}</Text>
+            <Text style={styles.text}>{guessNumber}</Text>
         </View>
     );
 };

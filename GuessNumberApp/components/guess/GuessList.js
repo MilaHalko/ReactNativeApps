@@ -2,13 +2,13 @@ import React from 'react';
 import {ScrollView} from "react-native";
 import GuessLine from "./GuessLine";
 
-const GuessList = (props) => {
+const GuessList = ({guessNumbers}) => {
     return (
         <ScrollView style={{width: '100%'}}>
             {
-                props.guessNumbers.map((number, index) => {
+                guessNumbers.map((number, index) => {
                     return (
-                        <GuessLine key={index} guessNumber={number}/>
+                        <GuessLine round={guessNumbers.length - index} guessNumber={number}/>
                     );
                 })
             }
